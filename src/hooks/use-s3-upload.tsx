@@ -47,7 +47,7 @@ type TrackedFile = {
   size: number;
 };
 
-export const useS3Upload = () => {
+export const useS3Upload = ({apiHost = ''}) => {
   let ref = useRef<HTMLInputElement>();
   let [files, setFiles] = useState<TrackedFile[]>([]);
 
@@ -60,7 +60,7 @@ export const useS3Upload = () => {
 
   let uploadToS3 = async (file: File) => {
     let filename = encodeURIComponent(file.name);
-    let res = await fetch(`/api/s3-upload?filename=${filename}`);
+    let res = await fetch(`${apiHost}/api/s3-upload?filename=${filename}`);
     let data = await res.json();
 
     if (data.error) {
