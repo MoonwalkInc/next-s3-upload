@@ -69,7 +69,8 @@ export const useS3Upload = ({apiHost = ''}) => {
         Key: data.key,
         Body: file,
         CacheControl: 'max-age=630720000, public',
-        ContentType: file.type,
+        ContentType: 'application/octet-stream; charset=utf-8',
+        ContentDisposition: `attachment; filename="${filename}"; filename*="${filename}"`,
       };
 
       // at some point make this configurable
