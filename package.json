@@ -1,4 +1,5 @@
 {
+  "name": "next-s3-upload-host-headers",
   "version": "0.1.6",
   "license": "MIT",
   "main": "dist/index.js",
@@ -35,7 +36,6 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "name": "next-s3-upload",
   "author": "Ryan Toronto <ryanto@gmail.com>",
   "module": "dist/next-s3-upload.esm.js",
   "size-limit": [
