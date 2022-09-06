@@ -16,7 +16,7 @@ type Options = {
 };
 
 let makeRouteHandler = (options: Options = {}): Handler => {
-  let route: NextRouteHandler = async function (req, res) {
+  let route: NextRouteHandler = async function(req, res) {
     let missing = missingEnvs();
     if (missing.length > 0) {
       res
@@ -80,7 +80,7 @@ let missingEnvs = (): string[] => {
     'S3_UPLOAD_REGION',
     // 'S3_UPLOAD_BUCKET',
   ];
-  return keys.filter((key) => !process.env[key]);
+  return keys.filter(key => !process.env[key]);
 };
 
 let APIRoute = makeRouteHandler();

@@ -36,7 +36,7 @@ type TrackedFile = {
   size: number;
 };
 
-export const useS3Upload = ({apiHost = ''}) => {
+export const useS3Upload = ({ apiHost = '' }) => {
   let ref = useRef<HTMLInputElement>();
   let [files, setFiles] = useState<TrackedFile[]>([]);
 
