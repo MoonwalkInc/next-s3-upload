@@ -13,6 +13,7 @@ type Handler = NextRouteHandler & { configure: Configure };
 type Options = {
   key?: (req: NextApiRequest, filename: string) => string | Promise<string>;
   bucketName?: string;
+  bucketRegion?: string;
 };
 
 let makeRouteHandler = (options: Options = {}): Handler => {
@@ -63,7 +64,7 @@ let makeRouteHandler = (options: Options = {}): Handler => {
         token,
         key,
         bucket,
-        region: process.env.S3_UPLOAD_REGION,
+        region: options.bucketRegion || process.env.S3_UPLOAD_REGION,
       });
     }
   };
