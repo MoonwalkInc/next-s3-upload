@@ -1,6 +1,6 @@
 {
-  "name": "next-s3-upload-host-headers",
-  "version": "0.1.6",
+  "name": "next-s3-upload-host",
+  "version": "0.1.7",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
