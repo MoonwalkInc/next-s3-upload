@@ -12,10 +12,11 @@ type Handler = NextRouteHandler & { configure: Configure };
 
 type Options = {
   key?: (req: NextApiRequest, filename: string) => string | Promise<string>;
+  bucketName?: string;
 };
 
 let makeRouteHandler = (options: Options = {}): Handler => {
-  let route: NextRouteHandler = async function(req, res) {
+  let route: NextRouteHandler = async function (req, res) {
     let missing = missingEnvs();
     if (missing.length > 0) {
       res
@@ -28,7 +29,7 @@ let makeRouteHandler = (options: Options = {}): Handler => {
         region: process.env.S3_UPLOAD_REGION,
       };
 
-      let bucket = process.env.S3_UPLOAD_BUCKET;
+      let bucket = options.bucketName || process.env.S3_UPLOAD_BUCKET;
 
       let filename = req.query.filename as string;
       let key = options.key
@@ -77,9 +78,9 @@ let missingEnvs = (): string[] => {
     'S3_UPLOAD_KEY',
     'S3_UPLOAD_SECRET',
     'S3_UPLOAD_REGION',
-    'S3_UPLOAD_BUCKET',
+    // 'S3_UPLOAD_BUCKET',
   ];
-  return keys.filter(key => !process.env[key]);
+  return keys.filter((key) => !process.env[key]);
 };
 
 let APIRoute = makeRouteHandler();
